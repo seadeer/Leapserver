@@ -7,6 +7,6 @@ module.exports = function(app){
 
     app.get('/catvideos', function(req, res){
         main.getVideos(req, res);
-    })
+    });
    
 };
