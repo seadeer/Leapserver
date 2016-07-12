@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var app = express();
+global.rootpath = path.resolve(__dirname);
 
 app.use(express.static(__dirname + '/client/assets'));
 app.use(bodyParser.json());
