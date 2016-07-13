@@ -8,5 +8,9 @@ module.exports = function(app){
     app.get('/catvideos', function(req, res){
         main.getVideos(req, res);
     });
+
+    // app.get('/catvideos/:id', function(req, res){
+    //     main.sendVideo(req, res);
+    // })
    
 };

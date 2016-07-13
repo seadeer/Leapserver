@@ -1,11 +1,11 @@
 <head>
-    <script></script>
+    <script>'/scripts/video.js/dist/video.min.js'</script>
 </head>
 <h1>Here be breaded cat videos</h1>
 <ul>
     <% for(var i=0; i<data.length; i++) {%>
         <li>
-            <a href='videos/<%=data[i]%>'><%=data[i]%></a>
+            <video id='<%=data[i]%>' class='video-js vjs-default-skin' controls preload='auto' width='640' height="264"> <source src='/files/video/<%=data[i]%>'> type="video/mp4" /></video>
         </li> 
     <% } %>
 </ul>
