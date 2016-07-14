@@ -18,8 +18,10 @@
 <script>
         $('document').ready(function(){
             $('video').each(function(){
-                videojs($(this).attr("id")).chapter_thumbnails({
-            src: '/files/video/' + $(this).attr("id") + ".vtt"
+                var id = $(this).attr("id")
+                videojs($(this).attr("id")).ready(function(){this.chapter_thumbnails({
+            src: '/files/video/' + id + ".vtt"
+                })
             })
         });
     }); 
