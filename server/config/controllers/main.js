@@ -18,11 +18,5 @@ module.exports = {
         res.render('videos', {data:data});
     },
 
-    sendVideo: function(req, res){
-        var video = decodeURI(req.params.id);
-        var videoFile = path.join(rootpath, '/client/assets/files/video/', video);
-        console.log(videoFile);
-        res.sendFile(videoFile);
-    }
 
 }
