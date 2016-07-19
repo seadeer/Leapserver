@@ -1,3 +1,5 @@
-node_modules
+node_modules/*
+!node_modules/videojs-chapter-thumbnails
 Cat Breading-eeVOaznQ9rk.mp4
 FUNNY CAT BREADING!-dfMj5SeK10o.mp4
+client/assets/files
