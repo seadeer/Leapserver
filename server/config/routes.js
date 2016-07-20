@@ -1,21 +1,13 @@
 var main = require('./controllers/main.js');
-
+var fileSystem = require("../../fileSystem.js");
 module.exports = function(app){
     app.get('/', function(req, res){
-        res.render('index');
+        console.log(fileSystem)
+        res.render('index', {fileSystem : fileSystem});
     });
     app.get('/csharp/:topic', function(req, res){
-        res.render('content', {
-            welcomeMessage: "Welcome to C# !",
-            content: {
-                introduction: {
-                  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip "
-                },
-                presentations: {},
-                videos: {},
-                assignments: {}
-            }
-        });       
+        // var folderContent = new contentFromFile("c#");
+        res.render('content', folderContent);       
     });
     app.get('/azure/:topic', function(req, res){
         res.render('content', {
