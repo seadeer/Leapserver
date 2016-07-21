@@ -44,7 +44,8 @@ module.exports = {
         console.log("Rendered templates:", videos, presentations);
         res.render(rootpath + '/client/assets/html/content', {
             inSubject : true,
-            subjectName : req.params.id,
+            subjectName : req.params.subject,
+            subTopic : req.params.id,
             fileSystem : fileSystem,
             welcomeMessage: message,
         content: {

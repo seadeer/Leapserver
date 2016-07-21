@@ -8,16 +8,20 @@
 
                           <% for(var i =0; i < fileSystem.length; i++) { %>
                           <% var subjects = fileSystem[i] %>
-                          <% console.log(subjects) %>
                             <li class="active side-nav-c2">
                                     <a data-toggle="collapse" data-parent="#sidenav-small" href="#<%= Object.keys(subjects) %>" aria-expanded="true" aria-controls="#<%= Object.keys(subjects) %>"><%= Object.keys(subjects) %></a>
+                                   <%if(inSubject == true && subjectName != Object.keys(subjects)){ %>
                                       <ul class="nav collapse" id="<%= Object.keys(subjects) %>">
+                                   <%} else { %>
+                                      <ul class="nav collapse in" id="<%= Object.keys(subjects) %>">
 
-                                        <% for(var topics in subjects[Object.keys(subjects)[i]]) { %>
-                                          <% var topicName = subjects[Object.keys(subjects)[i]][parseInt(topics)] %>
+                                   <% } %>
+                                        <% for(var topics in subjects[Object.keys(subjects)[0]]) { %>
+
+                                          <% var topicName = subjects[Object.keys(subjects)[0]][parseInt(topics)] %>
 
                                           <a data-toggle="collapse" data-parent="#sidenav-small" href="#<%= topicName %>" aria-expanded="true" aria-controls="#<%= topicName %>">
-                                            <%if(inSubject == true && subjectName != topicName){ %>
+                                            <%if(inSubject == true && subTopic != topicName){ %>
                                             <a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>"><%=topicName%></a> </a>
                                             <ul class="nav collapse" id="<%=topicName%>">
 
@@ -32,10 +36,12 @@
                                             <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#assignments">Assignments</a></li>
                                             </ul>
                                           <% } %>
+                                          
                                       </ul>
                                 </li>
 
                           <% } %>
+
 
                         </div>
                       
