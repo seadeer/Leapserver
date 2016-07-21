@@ -10,7 +10,24 @@ function getStuff(subject, topic , type){
     var results = fs.readdirSync(folder);
     var data = [];
     for (var i in results){
-        data.push(results[i].substring(0, results[i].length - 4));
+        var extension = path.extname(results[i]);
+        switch(type){
+            case 'videos':
+                if (extension == ".mp4" || extension == ".wmv"){
+                data.push(results[i].substring(0, results[i].lastIndexOf(".")));
+                }
+                break;
+            case 'presentations':
+                if (extension == ".ppt"){
+                data.push(results[i].substring(0, results[i].lastIndexOf(".")));
+            }
+            else if (extension == ".pptx"){
+                data.push(results[i].substring(0, results[i].lastIndexOf(".")));
+            }
+                break;
+            default:
+                data.push(results[i].substring(0, results[i].lastIndexOf(".")));
+        }
     }
     var partial = rootpath + '/client/assets/html/partials/'+  type + '.ejs';
     var compiled = ejs.compile(fs.readFileSync(partial, 'utf8'));
