@@ -20,6 +20,6 @@ JS libraries (Bootstrap, Angular, etc.) are installed via **NPM**. Include them 
 Add a new content folder to the tree in the **client/assets/files** folder. The folders are organized by categories. Put your content folder into the category folder where you think it belongs. For auto-discovery and rendering, each content folder needs to have the following properties:
 
 1. Have a name reflecting the content, e.g. "Azure_networking". Use snake case and no characters that need to be escaped (like $, #, etc.) in the names.
-2. Contain folders named **assignments**, **presentations**, and *videos*
+2. Contain folders named **assignments**, **presentations**, and **videos**
 3. Contain a file with the name identical to the folder name and with an .ejs extension (in our example, "Azure_networking.ejs"). The file should contain information about the topic marked up with `<h3>` and `<p>` tags (see **client/assets/files/csharp/csharp.ejs** for an example). 
 
