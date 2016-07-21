@@ -2,6 +2,6 @@ node_modules/*
 !node_modules/videojs-chapter-thumbnails
 Cat Breading-eeVOaznQ9rk.mp4
 FUNNY CAT BREADING!-dfMj5SeK10o.mp4
-*mp4
-*ppt
-*pptx
+*.mp4
+*.ppt
+*.pptx
