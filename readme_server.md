@@ -23,3 +23,34 @@ Add a new content folder to the tree in the **client/assets/files** folder. The 
 2. Contain folders named **assignments**, **presentations**, and **videos**
 3. Contain a file with the name identical to the folder name and with an .ejs extension (in our example, "Azure_networking.ejs"). The file should contain information about the topic marked up with `<h3>` and `<p>` tags (see **client/assets/files/csharp/csharp.ejs** for an example). 
 
+ - listOfsubject (folder)
+   - listOfCategories (folder)
+     - assignments (folder)
+     - presentations (folder)
+     - videos (folder)
+     - categoryName (.ejs)
+
+--
+Example File Structure
+ - Programming (folder)
+   - Csharp (folder)
+     - assignments (folder)
+     - presentations (folder)
+     - videos (folder)
+     - csharp.ejs (.ejs)
+   - Java (folder)
+     - assignments (folder)
+     - presentations (folder)
+     - videos (folder)
+     - java.ejs (.ejs)
+ - Raspberry Pi (folder)
+   - Linux File Structure (folder)
+     - assignments (folder)
+     - presentations (folder)
+     - videos (folder)
+     - linux.ejs (.ejs)
+   - Useful Commands (folder)
+     - assignments (folder)
+     - presentations (folder)
+     - videos (folder)
+     - linux.ejs (.ejs)          
