@@ -13,7 +13,7 @@ Server-side files include everything in the **server/** folder, **server.js**, a
 3. Navigate into the project root folder and run `npm install`.
 
 #Installing and including JS libraries
-JS libraries (Bootstrap, Angular, etc.) are installed via **NPM**. Include them into your HTML files like this: <script>'/scripts/path/to/the/jsfile'</script>, where the path starts from the **node_modules** folder.  
+JS libraries (Bootstrap, Angular, etc.) are installed via **NPM**. Include them into your HTML files like this: `<script>'/scripts/path/to/the/jsfile'</script>`, where the path starts from the **node_modules** folder.  
 
 
 #Adding content
