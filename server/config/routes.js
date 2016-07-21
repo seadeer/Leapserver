@@ -3,7 +3,7 @@ var fileSystem = require("../../fileSystem.js");
 module.exports = function(app){
 
     app.get('/', function(req, res){
-        res.render('index', {fileSystem : fileSystem});
+        res.render('index', {fileSystem : fileSystem, inSubject: true, subjectName: ""});
     });
 
     app.get('/topics/:subject/:id', function(req, res){

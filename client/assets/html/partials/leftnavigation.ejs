@@ -5,56 +5,37 @@
                                 <button type="button" class="close" data-dismiss="side-navigation" aria-label="close">
                                     <i class="glyph glyph-cancel"></i>
                                 </button>
-                          
-                                <li class="active side-nav-c2">
-                                    <a data-toggle="collapse" data-parent="#sidenav-small" href="#csharp" aria-expanded="true" aria-controls="#csharp">C#</a>
-                                      <ul class="nav collapse" id="csharp">
-                                        <li><a href="/csharp/introduction" class="active">Introduction</a></li>
-                                        <li><a href="/csharp/presentations">Presentions</a></li>
-                                        <li><a href="/csharp/videos">Videos</a></li>
-                                        <li><a href="/csharp/assignments">Assignments</a></li>
+
+                          <% for(var i =0; i < fileSystem.length; i++) { %>
+                          <% var subjects = fileSystem[i] %>
+                          <% console.log(subjects) %>
+                            <li class="active side-nav-c2">
+                                    <a data-toggle="collapse" data-parent="#sidenav-small" href="#<%= Object.keys(subjects) %>" aria-expanded="true" aria-controls="#<%= Object.keys(subjects) %>"><%= Object.keys(subjects) %></a>
+                                      <ul class="nav collapse" id="<%= Object.keys(subjects) %>">
+
+                                        <% for(var topics in subjects[Object.keys(subjects)[i]]) { %>
+                                          <% var topicName = subjects[Object.keys(subjects)[i]][parseInt(topics)] %>
+
+                                          <a data-toggle="collapse" data-parent="#sidenav-small" href="#<%= topicName %>" aria-expanded="true" aria-controls="#<%= topicName %>">
+                                            <%if(inSubject == true && subjectName != topicName){ %>
+                                            <a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>"><%=topicName%></a> </a>
+                                            <ul class="nav collapse" id="<%=topicName%>">
+
+                                            <% } else { %>                                             
+                                            <%=topicName%> </a> 
+                                            <ul class="nav collapse in" id="<%=topicName%>">                                        
+                                            <% } %> 
+                                            
+                                            <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#introduction" class="active">Introduction</a></li>
+                                            <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#presentations">Presentions</a></li>
+                                            <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#videos">Videos</a></li>
+                                            <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#assignments">Assignments</a></li>
+                                            </ul>
+                                          <% } %>
                                       </ul>
                                 </li>
 
-                                <li class="active side-nav-c2">
-                                    <a data-toggle="collapse" data-parent="#sidenav-small" href="#Azure" aria-expanded="true" aria-controls="#Azure">Azure</a>
-                                      <ul class="nav collapse" id="Azure">
-                                        <li><a href="/azure/introduction" class="active">Introduction</a></li>
-                                        <li><a href="/azure/presentations">Presentions</a></li>
-                                        <li><a href="/azure/videos">Videos</a></li>
-                                        <li><a href="/azure/assignments">Assignments</a></li>
-                                      </ul>
-                                </li>
+                          <% } %>
 
-                                  <li class="active side-nav-c2">
-                                    <a data-toggle="collapse" data-parent="#sidenav-small" href="#Algorithms" aria-expanded="true" aria-controls="#Algorithms">Algorithms</a>
-                                      <ul class="nav collapse" id="Algorithms">
-                                        <li><a href="/algorithms/introduction" class="active">Introduction</a></li>
-                                        <li><a href="/algorithms/presentations">Presentions</a></li>
-                                        <li><a href="/algorithms/videos">Videos</a></li>
-                                        <li><a href="/algorithms/assignments">Assignments</a></li>
-                                      </ul>
-                                </li>
-
-                                <li class="active side-nav-c2">
-                                    <a data-toggle="collapse" data-parent="#sidenav-small" href="#VisualStudio" aria-expanded="true" aria-controls="#VisualStudio">Visual Studio</a>
-                                      <ul class="nav collapse" id="VisualStudio">
-                                        <li><a href="/visualstudio/introduction" class="active">Introduction</a></li>
-                                        <li><a href="/visualstudio/presentations">Presentions</a></li>
-                                        <li><a href="/visualstudio/videos">Videos</a></li>
-                                        <li><a href="/visualstudio/assignments">Assignments</a></li>
-                                      </ul>
-                                </li>
-
-                                <li class="active side-nav-c2">
-                                    <a data-toggle="collapse" data-parent="#sidenav-small" href="#Pi" aria-expanded="true" aria-controls="#Pi">Pi</a>
-                                      <ul class="nav collapse" id="Pi">
-                                        <li><a href="/pi/introduction" class="active">Introduction</a></li>
-                                        <li><a href="/pi/presentations">Presentions</a></li>
-                                        <li><a href="/pi/videos">Videos</a></li>
-                                        <li><a href="/pi/assignments">Assignments</a></li>
-                                      </ul>
-                                </li> 
-                            </ul>
                         </div>
                       

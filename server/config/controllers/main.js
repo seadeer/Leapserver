@@ -1,6 +1,8 @@
 var fs = require('fs');
 var path = require('path');
 var ejs = require('ejs');
+var fileSystem = require("../../../fileSystem.js");
+
 
 //Renders a partial according  to the two parameters: the topic (locates the related content in the file system), and the type (gets the correct type of files from the containing folder)
 function getStuff(subject, topic , type){
@@ -41,6 +43,9 @@ module.exports = {
         var assignments = getStuff(req.params.subject, req.params.id, "assignments");
         console.log("Rendered templates:", videos, presentations);
         res.render(rootpath + '/client/assets/html/content', {
+            inSubject : true,
+            subjectName : req.params.id,
+            fileSystem : fileSystem,
             welcomeMessage: message,
         content: {
             introduction: intro,
