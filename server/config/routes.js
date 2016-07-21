@@ -68,7 +68,7 @@ module.exports = function(app){
         });       
     });
 
-    app.get('/topics/:id', function(req, res){
+    app.get('/topics/:subject/:id', function(req, res){
         main.renderContent(req, res);
     })
 

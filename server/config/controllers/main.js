@@ -3,8 +3,8 @@ var path = require('path');
 var ejs = require('ejs');
 
 //Renders a partial according  to the two parameters: the topic (locates the related content in the file system), and the type (gets the correct type of files from the containing folder)
-function getStuff(topic, type){
-    var folder = path.join(rootpath, '/client/assets/files', topic, '/', type);
+function getStuff(subject, topic , type){
+    var folder = path.join(rootpath, '/client/assets/files', subject, topic, '/', type);
     var results = fs.readdirSync(folder);
     var data = [];
     for (var i in results){
@@ -18,8 +18,8 @@ function getStuff(topic, type){
 }
 
 //renders the introduction partial
-function getIntro(topic){
-    var template = rootpath + '/client/assets/files/' + topic + '/' + topic;
+function getIntro(subject, topic){
+    var template = rootpath + '/client/assets/files/' + subject + '/' + topic + '/' + topic;
     return ejs.render(template);
 }
 
@@ -35,10 +35,10 @@ module.exports = {
             message = "Welcome to " + req.params.id + "!";
         }
         
-        var intro = getIntro(req.params.id);
-        var videos = getStuff(req.params.id, "videos"); 
-        var presentations = getStuff(req.params.id, "presentations");
-        var assignments = getStuff(req.params.id, "assignments");
+        var intro = getIntro(req.params.subject, req.params.id);
+        var videos = getStuff(req.params.subject, req.params.id, "videos"); 
+        var presentations = getStuff(req.params.subject, req.params.id, "presentations");
+        var assignments = getStuff(req.params.subject, req.params.id, "assignments");
         console.log("Rendered templates:", videos, presentations);
         res.render(rootpath + '/client/assets/html/content', {
             welcomeMessage: message,
