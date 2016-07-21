@@ -14,7 +14,8 @@
     "ejs": "^2.4.2",
     "express": "^4.14.0",
     "nodemon": "^1.9.2",
-    "videojs-chapter-thumbnails": "^1.1.2"
+    "videojs-chapter-thumbnails": "^1.1.2",
+    "winstrap": "^0.5.10"
   },
   "devDependencies": {
     "video.js": "^5.10.4"
