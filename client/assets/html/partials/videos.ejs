@@ -1,0 +1,21 @@
+<hr>
+<h3>Videos</h3>
+<ul>
+    <% for(var i=0; i < data.length; i++) {%>
+        <li>
+            <video id='<%=data[i]%>' class='video-js vjs-default-skin' controls preload='auto' width='300' height="124"> <source src='/files/video/<%=data[i]%>.mp4'> type="video/mp4" /></video>
+        </li> 
+    <% } %>
+</ul>
+<script>
+        $('document').ready(function(){
+            $('video').each(function(){
+                var id = $(this).attr("id")
+                videojs($(this).attr("id")).ready(function(){this.chapter_thumbnails({
+            src: '/files/video/' + id + ".vtt"
+                })
+            })
+        });
+    }); 
+</script>
+
