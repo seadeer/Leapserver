@@ -42,6 +42,7 @@ module.exports = {
         var presentations = getStuff(req.params.subject, req.params.id, "presentations");
         var assignments = getStuff(req.params.subject, req.params.id, "assignments");
         console.log("Rendered templates:", videos, presentations);
+   
         res.render(rootpath + '/client/assets/html/content', {
             inSubject : true,
             subjectName : req.params.subject,

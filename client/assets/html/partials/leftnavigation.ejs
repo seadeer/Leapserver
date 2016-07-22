@@ -1,47 +1,49 @@
+<!-- This is the left navigation template for created a double nested list yay.
+     this takes advantage of the fileSystem array created from fileSystem.js 
+     it loops through every subject then goes through each topic. It also uses 
+     inSubject, subjectName, and subTopic keys passed to it for conditional rendering
+     in the case that the current page is a subject (not home page) and the topic we 
+     are on does not match the current topic then links to navigate elsewhere are included. 
 
-                        <div class="col-md-6">
+     This is to allow a user to use the innermost li's to reference page sections
+     when they are in a specific topic.
+ -->
+<div class="col-md-6">
 
-                            <ul role="navigation" id="sidenav-small" class="nav side-navigation side-navigation-small theme-default">
-                                <button type="button" class="close" data-dismiss="side-navigation" aria-label="close">
-                                    <i class="glyph glyph-cancel"></i>
-                                </button>
+    <ul role="navigation" id="sidenav-small" class="nav side-navigation side-navigation-small theme-default">
+        <button type="button" class="close" data-dismiss="side-navigation" aria-label="close">
+            <i class="glyph glyph-cancel"></i>
+        </button>
 
-                          <% for(var i =0; i < fileSystem.length; i++) { %>
-                          <% var subjects = fileSystem[i] %>
-                            <li class="active side-nav-c2">
-                                    <a data-toggle="collapse" data-parent="#sidenav-small" href="#<%= Object.keys(subjects) %>" aria-expanded="true" aria-controls="#<%= Object.keys(subjects) %>"><%= Object.keys(subjects) %></a>
-                                   <%if(inSubject == true && subjectName != Object.keys(subjects)){ %>
-                                      <ul class="nav collapse" id="<%= Object.keys(subjects) %>">
-                                   <%} else { %>
-                                      <ul class="nav collapse in" id="<%= Object.keys(subjects) %>">
-
-                                   <% } %>
-                                        <% for(var topics in subjects[Object.keys(subjects)[0]]) { %>
-
-                                          <% var topicName = subjects[Object.keys(subjects)[0]][parseInt(topics)] %>
-
-                                          <a data-toggle="collapse" data-parent="#sidenav-small" href="#<%= topicName %>" aria-expanded="true" aria-controls="#<%= topicName %>">
-                                            <%if(inSubject == true && subTopic != topicName){ %>
-                                            <a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>"><%=topicName%></a> </a>
-                                            <ul class="nav collapse" id="<%=topicName%>">
-
-                                            <% } else { %>                                             
-                                            <%=topicName%> </a> 
-                                            <ul class="nav collapse in" id="<%=topicName%>">                                        
-                                            <% } %> 
-                                            
-                                            <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#introduction" class="active">Introduction</a></li>
-                                            <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#presentations">Presentions</a></li>
-                                            <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#videos">Videos</a></li>
-                                            <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#assignments">Assignments</a></li>
-                                            </ul>
-                                          <% } %>
-                                          
-                                      </ul>
-                                </li>
-
-                          <% } %>
+        <% for(var i =0; i < fileSystem.length; i++) { %>
+            <% var subjects = fileSystem[i] %>
+            <li class="active side-nav-c2">
+              <a data-toggle="collapse" data-parent="#sidenav-small" href="#<%= Object.keys(subjects) %>" aria-expanded="true" aria-controls="#<%= Object.keys(subjects) %>"><%= Object.keys(subjects) %></a>
+              <%if(inSubject == true && subjectName != Object.keys(subjects)){ %>
+                  <ul class="nav collapse" id="<%= Object.keys(subjects) %>">
+              <%} else { %>
+                  <ul class="nav collapse in" id="<%= Object.keys(subjects) %>">
+              <% } %>
+              <% for(var topics in subjects[Object.keys(subjects)[0]]) { %>
+                    <% var topicName = subjects[Object.keys(subjects)[0]][parseInt(topics)] %>
+                    <a data-toggle="collapse" data-parent="#sidenav-small" href="#<%= topicName %>" aria-expanded="true" aria-controls="#<%= topicName %>">
+                    <%if(inSubject == true && subTopic != topicName){ %>
+                      <a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>"><%=topicName%></a> </a>
+                      <ul class="nav collapse" id="<%=topicName%>">
+                    <% } else { %>                                             
+                        <%=topicName%> </a> 
+                        <ul class="nav collapse in" id="<%=topicName%>">                                        
+                    <% } %> 
+                          <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#introduction" class="active">Introduction</a></li>
+                          <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#presentations">Presentions</a></li>
+                          <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#videos">Videos</a></li>
+                          <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#assignments">Assignments</a></li>
+                        </ul>
+              <% } %>
+                      </ul>
+            </li>
+        <% } %>
 
 
-                        </div>
+</div>
                       
