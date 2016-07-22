@@ -6,32 +6,40 @@ var fileSystem = require("../../../fileSystem.js");
 
 //Renders a partial according  to the two parameters: the topic (locates the related content in the file system), and the type (gets the correct type of files from the containing folder)
 function getStuff(subject, topic , type){
-    var folder = path.join(rootpath, '/client/assets/files', subject, topic, '/', type);
+    var folder = path.join(rootpath, '/client/assets/files', subject, topic, '/', type, '/');
     var results = fs.readdirSync(folder);
+    var statfolder = path.join('/', 'files', subject, topic, '/', type, '/')
+    console.log("Statfolder:", statfolder);
     var data = [];
+    var paths = [];
     for (var i in results){
         var extension = path.extname(results[i]);
+        var filepath = statfolder + results[i];
         switch(type){
             case 'videos':
                 if (extension == ".mp4" || extension == ".wmv"){
                 data.push(results[i].substring(0, results[i].lastIndexOf(".")));
+                paths.push(filepath);
                 }
                 break;
             case 'presentations':
                 if (extension == ".ppt"){
                 data.push(results[i].substring(0, results[i].lastIndexOf(".")));
+                paths.push(filepath);
             }
             else if (extension == ".pptx"){
                 data.push(results[i].substring(0, results[i].lastIndexOf(".")));
+                paths.push(filepath);
             }
                 break;
             default:
                 data.push(results[i].substring(0, results[i].lastIndexOf(".")));
+                paths.push(filepath);
         }
     }
     var partial = rootpath + '/client/assets/html/partials/'+  type + '.ejs';
     var compiled = ejs.compile(fs.readFileSync(partial, 'utf8'));
-    var html = compiled({data:data});
+    var html = compiled({data:data, paths:paths, folder:statfolder});
 
     return html;
 }
