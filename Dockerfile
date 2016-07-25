@@ -1,5 +1,5 @@
 #install Node in Docker
-FROM node:argon
+FROM hypriot/rpi-node:latest
 
 #Create app folder
 RUN mkdir -p /usr/src/app
@@ -9,7 +9,7 @@ WORKDIR usr/src/app
 copy package.json /usr/src/app/
 RUN npm install
 
-COPY ./usr/src/app
+COPY . /usr/src/app
 EXPOSE 9000
 
 CMD [ "npm", "start" ]
