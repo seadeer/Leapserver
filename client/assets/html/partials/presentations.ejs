@@ -1,10 +1,65 @@
 <hr>
+<style>
+    .main iframe {
+        height: 400px;
+        width: 100%;
+    }
+    .secondary iframe 
+        height: 160px;
+        width: 180px;
+    }
+
+    .list {
+        display: inline-flex;
+        overflow: scroll;
+        width: 100%;
+    }
+    .secondary {
+        padding: 10px
+    }
+</style>
 <a class="noLink" name="presentations"></a>
 <h3>Powerpoints</h3>
-<ul>
-    <% for(var i=0; i < data.length; i++) {%>
-        <li>
-            <iframe src='/viewer/#../files/<%=subjectName%>/<%=subTopic%>/presentations/<%=data[i]%>' allowfullscreen webkitallowfullscreen></iframe>
-        </li> 
-        <% } %>
+<div class="row">
+ <div class="col-xs-24 col-md-24 navigation-section">
+ <ul >
+
+            <li class="main">
+                <iframe id="mainPresentation" class="presentation" src='/viewer/#../files/<%=subjectName%>/<%=subTopic%>/presentations/<%=data[0]%>' allowfullscreen webkitallowfullscreen></iframe>
+            </li> 
 </ul>
+ </div>
+<div class="row">
+<div class="col-xs-24 col-md-24 navigation-section">
+    <ul class="list">
+
+        <% for(var i=1; i < data.length; i++) {%>
+            <li class="secondary">
+                <iframe class="presentation" src='/viewer/#../files/<%=subjectName%>/<%=subTopic%>/presentations/<%=data[i]%>' allowfullscreen webkitallowfullscreen></iframe>
+                <button>View Presentation</button>
+            </li> 
+            <% } %>
+    </ul>
+</div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        function swap(a, b) {
+            a = $(a); b = $(b);
+            var tmp = $('<span>').hide();
+            a.before(tmp);
+            b.before(a);
+            tmp.replaceWith(b);
+        };
+        
+        $(".secondary button").click(function(){
+            var oldMainLi = $(".main iframe");
+            var newMainLi = $(this).parent()[0].children[0]
+            swap(oldMainLi, newMainLi)
+        })
+   
+    })
+
+
+</script>
