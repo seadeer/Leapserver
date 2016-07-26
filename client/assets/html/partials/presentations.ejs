@@ -4,7 +4,7 @@
 <ul>
     <% for(var i=0; i < data.length; i++) {%>
         <li>
-            <a href='/presentations/<%=data[i]%>'>{{data[i]}}</a>
+            <iframe src='/viewer/#../files/<%=subjectName%>/<%=subTopic%>/presentations/<%=data[i]%>' allowfullscreen webkitallowfullscreen></iframe>
         </li> 
         <% } %>
 </ul>

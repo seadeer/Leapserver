@@ -8,6 +8,7 @@ global.rootpath = path.resolve(__dirname);
 
 app.use(express.static(__dirname + '/client/assets'));
 app.use('/scripts', express.static(__dirname + '/node_modules/'));
+app.use('/viewer', express.static('node_modules/node-viewerjs/release'));
 app.use(bodyParser.json());
 
 var routes_setter = require('./server/config/routes.js');

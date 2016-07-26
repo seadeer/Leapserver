@@ -23,15 +23,21 @@ function getStuff(subject, topic , type){
                 }
                 break;
             case 'presentations':
-                if (extension == ".ppt"){
-                data.push(results[i].substring(0, results[i].lastIndexOf(".")));
+                if (extension == ".odp"){
+                data.push(results[i]);
                 paths.push(filepath);
             }
-            else if (extension == ".pptx"){
-                data.push(results[i].substring(0, results[i].lastIndexOf(".")));
+            else if (extension == ".pdf"){
+                data.push(results[i]);
                 paths.push(filepath);
             }
                 break;
+            // If you want in the future to render pptx here is a block to work with
+            // else if (extension == ".pptx"){
+            //     data.push(results[i]);
+            //     paths.push(filepath);
+            // }
+            //     break;            
             default:
                 data.push(results[i].substring(0, results[i].lastIndexOf(".")));
                 paths.push(filepath);
@@ -39,7 +45,7 @@ function getStuff(subject, topic , type){
     }
     var partial = rootpath + '/client/assets/html/partials/'+  type + '.ejs';
     var compiled = ejs.compile(fs.readFileSync(partial, 'utf8'));
-    var html = compiled({data:data, paths:paths, folder:statfolder});
+    var html = compiled({data:data, paths:paths, folder:statfolder, subjectName: subject, subTopic: topic});
 
     return html;
 }
@@ -66,7 +72,7 @@ module.exports = {
         var videos = getStuff(req.params.subject, req.params.id, "videos"); 
         var presentations = getStuff(req.params.subject, req.params.id, "presentations");
         var assignments = getStuff(req.params.subject, req.params.id, "assignments");
-        console.log("Rendered templates:", videos, presentations);
+       // console.log("Rendered templates:", videos, presentations);
    
         res.render(rootpath + '/client/assets/html/content', {
             inSubject : true,
