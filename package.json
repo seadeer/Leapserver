@@ -13,9 +13,10 @@
     "body-parser": "^1.15.2",
     "ejs": "^2.4.2",
     "express": "^4.14.0",
+    "node-viewerjs": "^0.6.4",
     "nodemon": "^1.9.2",
     "videojs-chapter-thumbnails": "^1.1.2",
-    "winstrap" : "^0.5.10"
+    "winstrap": "^0.5.10"
   },
   "devDependencies": {
     "video.js": "^5.10.4"
