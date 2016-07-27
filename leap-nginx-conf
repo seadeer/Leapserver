@@ -1,0 +1,28 @@
+#put this file in /etc/nginx/sites-available and symlink in /etc/nginx/sites-enabled. 
+
+server {
+    listen 80;
+    server_name localhost;
+
+    location /scripts {
+        proxy_pass http://localhost:9000/scripts;
+    }
+
+    location /leapserver {
+        rewrite ^/leapserver(.*) /$1 break;
+        proxy_pass http://localhost:9000/;
+    }
+
+    location /pytutor {
+        proxy_pass http://localhost:8080/;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    location /pytutor/exec {
+        resolver 8.8.8.8;
+        proxy_pass $scheme://localhost:8080/exec$is_args$query_string;
+    }
+}

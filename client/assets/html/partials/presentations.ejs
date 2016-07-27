@@ -23,10 +23,13 @@
 <div class="row">
  <div class="col-xs-24 col-md-24 navigation-section">
  <ul >
-
+<%if(data[0]){ %>
             <li class="main">
                 <iframe id="mainPresentation" class="presentation" src='/viewer/#../files/<%=subjectName%>/<%=subTopic%>/presentations/<%=data[0]%>' allowfullscreen webkitallowfullscreen></iframe>
-            </li> 
+            </li>
+<%} else { %>
+            <li> No Presentations Yet </li> 
+<%}%>
 </ul>
  </div>
 <div class="row">
