@@ -8,7 +8,8 @@
      This is to allow a user to use the innermost li's to reference page sections
      when they are in a specific topic.
  -->
-<div class="col-md-6">
+
+<div id="navdiv"class="col-md-6">
 
     <ul role="navigation" id="sidenav-small" class="nav side-navigation side-navigation-small theme-default">
         <button type="button" class="close" data-dismiss="side-navigation" aria-label="close">
@@ -38,7 +39,7 @@
                           <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#presentations">Presentions</a></li>
                           <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#videos">Videos</a></li>
                           <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#assignments">Assignments</a></li>
-                        </ul>
+                        </ul><br>
               <% } %>
                       </ul>
             </li>
