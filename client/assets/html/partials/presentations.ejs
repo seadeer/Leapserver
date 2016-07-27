@@ -1,10 +1,10 @@
 <hr>
 <style>
-    .main iframe {
+    .main a {
         height: 400px;
         width: 100%;
     }
-    .secondary iframe {
+    .secondary a {
         height: 160px;
         width: 180px;
     }
@@ -25,7 +25,7 @@
  <ul >
 <%if(data[0]){ %>
             <li class="main">
-                <iframe id="mainPresentation" class="presentation" src='/viewer/#../files/<%=subjectName%>/<%=subTopic%>/presentations/<%=data[0]%>' allowfullscreen webkitallowfullscreen></iframe>
+                <a id="mainPresentation" class="presentation" href='/files/<%=subjectName%>/<%=subTopic%>/presentations/<%=data[0]%>'> <%=data[0]%> </a>
             </li>
 <%} else { %>
             <li> No Presentations Yet </li> 
@@ -34,12 +34,11 @@
  </div>
 <div class="row">
 <div class="col-xs-24 col-md-24 navigation-section">
-    <ul class="list">
+    <ul>
 
         <% for(var i=1; i < data.length; i++) {%>
             <li class="secondary">
-                <iframe class="presentation" src='/viewer/#../files/<%=subjectName%>/<%=subTopic%>/presentations/<%=data[i]%>' allowfullscreen webkitallowfullscreen></iframe>
-                <button>View Presentation</button>
+                <a class="presentation" href='/files/<%=subjectName%>/<%=subTopic%>/presentations/<%=data[i]%>'> <%=data[i]%> </a>
             </li> 
             <% } %>
     </ul>
@@ -47,22 +46,25 @@
 </div>
 
 <script>
-    $(document).ready(function(){
-        function swap(a, b) {
-            a = $(a); b = $(b);
-            var tmp = $('<span>').hide();
-            a.before(tmp);
-            b.before(a);
-            tmp.replaceWith(b);
-        };
+    // <button>View Presentation</button>
+    //    <ul class="list">
+
+    // $(document).ready(function(){
+    //     function swap(a, b) {
+    //         a = $(a); b = $(b);
+    //         var tmp = $('<span>').hide();
+    //         a.before(tmp);
+    //         b.before(a);
+    //         tmp.replaceWith(b);
+    //     };
         
-        $(".secondary button").click(function(){
-            var oldMainLi = $(".main iframe");
-            var newMainLi = $(this).parent()[0].children[0]
-            swap(oldMainLi, newMainLi)
-        })
+    //     $(".secondary button").click(function(){
+    //         var oldMainLi = $(".main a");
+    //         var newMainLi = $(this).parent()[0].children[0]
+    //         swap(oldMainLi, newMainLi)
+    //     })
    
-    })
+    // })
 
 
 </script>
