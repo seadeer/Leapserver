@@ -60,6 +60,7 @@
 
 <script>
 $(document).ready(function() {
+
    var formatNice = function(uglyPathName) {
         var newWord = uglyPathName.split("_").map(function(word) {
             var w = word.split("");
@@ -70,11 +71,21 @@ $(document).ready(function() {
         return newWord.join(" ");
     }
     var p = [];
+    // If browser returns nodelist that doesn't have forEach method
+    try {
     document.querySelectorAll(".fixName").forEach(function(d) {
         if (d.innerHTML.trim().length > 0) {
             d.innerHTML = formatNice(d.innerHTML);
         }
     })
+    } catch(e){
+    	var nodes = document.querySelectorAll(".fixName");
+        for(var i=0; i< nodes.length; i++){
+            if (nodes[i].innerHTML.trim().length > 0) {
+            nodes[i].innerHTML = formatNice(nodes[i].innerHTML);
+        }
+        }
+    }
 });
 </script>
                       
