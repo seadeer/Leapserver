@@ -13,3 +13,7 @@ node_modules/*
 *.DS_STORE
 *.Trashes
 
+*.docx
+*.odp
+*.pdf
+foo.txt
