@@ -8,7 +8,15 @@
      This is to allow a user to use the innermost li's to reference page sections
      when they are in a specific topic.
  -->
-
+<style>
+    .topic {
+        font-weight: bolder;
+        color: #0078D7 !important;
+    }
+    .topic ~ul li a{
+        color: black !important;
+    }
+</style>
 <div id="navdiv"class="col-md-6">
 
     <ul role="navigation" id="sidenav-small" class="nav side-navigation side-navigation-small theme-default">
@@ -27,7 +35,7 @@
               <% } %>
               <% for(var topics in subjects[Object.keys(subjects)[0]]) { %>
                     <% var topicName = subjects[Object.keys(subjects)[0]][parseInt(topics)] %>
-                    <a data-toggle="collapse" data-parent="#sidenav-small" href="#<%= topicName %>" aria-expanded="true" aria-controls="#<%= topicName %>">
+                    <a class="topic" data-toggle="collapse" data-parent="#sidenav-small" href="#<%= topicName %>" aria-expanded="true" aria-controls="#<%= topicName %>">
                     <%if(inSubject == true && subTopic != topicName){ %>
                       <a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>"><%=topicName%></a> </a>
                       <ul class="nav collapse" id="<%=topicName%>">
