@@ -22,7 +22,7 @@
             <div class="item">
          <%}%>
 
-                <video id='<%=folder%><%=data[i]%>' class='video-js vjs-default-skin' controls preload='auto' width='300' height="124"> <source src='<%=paths[i]%>' type="video/mp4" />
+                <video id='<%=folder%><%=data[i]%>' class='video-js vjs-default-skin' controls preload='auto' width='300' height="124"> <source src='<%=paths[i]%>' type="video/<%=paths[i].substring(paths[i].lastIndexOf(".")+1,paths[i].length)%>"/>
                 </video>
                 </div>
 
