@@ -4,7 +4,7 @@ Chapter 1
 00:00:00.000 --> 00:32:00.000
 {   
     "title":"Chaper 1",
-    "image":"Displaying VM CPU core usage"
+    "text":"Displaying VM CPU core usage"
     
 }
 
@@ -12,7 +12,7 @@ Chapter 2
 00:32:00.000 --> 00:47:00.000
 {   
     "title":"Chaper 2",
-    "image":"Using Sockets with Lua"
+    "text":"Using Sockets with Lua"
     
 }
 
@@ -20,7 +20,7 @@ Chapter 3
 00:47:00.000 --> 01:05:00.000
 {   
     "title":"Chaper 3",
-    "image":"Demo of US Map in Lua"
+    "text":"Demo of US Map in Lua"
     
 }
 
@@ -28,7 +28,7 @@ Chapter 4
 00:47:00.000 --> 01:05:00.000
 {   
     "title":"Chaper 4",
-    "image":"OS Fundamentals and Schedlua Demo"
+    "text":"OS Fundamentals and Schedlua Demo"
     
 }
 
@@ -36,6 +36,6 @@ Chapter 5
 01:05:00.000 --> 02:31:58.000
 {   
     "title":"Chaper 5",
-    "image":"Asynchronous function calls with Schedlua"
+    "text":"Asynchronous function calls with Schedlua"
     
 }

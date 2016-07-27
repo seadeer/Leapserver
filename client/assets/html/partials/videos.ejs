@@ -1,51 +1,24 @@
 <hr>
 <a class="noLink" name="videos"></a>
 <style>
-  
+    .videoRound{ 
+    list-style-type: none;
+    display: inline-flex;
+    width: 100%;
+    overflow: auto;
+    }
 </style>
 <h3>Videos</h3>
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-  </ol>
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-
-        <% for(var i=0; i < data.length; i++) {%>
-         <%if(i==0) { %>
-            <div class="item active">
-         <%} else { %>
-            <div class="item">
-         <%}%>
-
-                <video id='<%=folder%><%=data[i]%>' class='video-js vjs-default-skin' controls preload='auto' width='300' height="124"> <source src='<%=paths[i]%>' type="video/mp4" />
-                </video>
-                </div>
-
-        <% } %>
-
-    </div>
-
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-
+<ul class="">
+    <% for(var i=0; i < data.length; i++) {%>
+        <li>
+            <video id='<%=folder%><%=data[i]%>' class='video-js vjs-default-skin' controls preload='auto' > <source src='<%=paths[i]%>' type="video/mp4" />
+            </video><br/>
+        </li> 
+    <% } %>
+</ul>
 <script>
         $('document').ready(function(){
-            $('.carousel').carousel({
-                interval: false
-            })
             $('video').each(function(){
                 var id = $(this).attr("id")
                 videojs($(this).attr("id")).ready(function(){this.chapter_thumbnails({

@@ -17,7 +17,9 @@
         color: black !important;
     }
 </style>
-<div id="navdiv"class="col-md-6">
+
+
+<div id="navdiv" class="col-md-6">
 
     <ul role="navigation" id="sidenav-small" class="nav side-navigation side-navigation-small theme-default">
         <button type="button" class="close" data-dismiss="side-navigation" aria-label="close">
@@ -27,7 +29,7 @@
         <% for(var i =0; i < fileSystem.length; i++) { %>
             <% var subjects = fileSystem[i] %>
             <li class="active side-nav-c2">
-              <a data-toggle="collapse" data-parent="#sidenav-small" href="#<%= Object.keys(subjects) %>" aria-expanded="true" aria-controls="#<%= Object.keys(subjects) %>"><%= Object.keys(subjects) %></a>
+              <a class="fixName" data-toggle="collapse" data-parent="#sidenav-small" href="#<%= Object.keys(subjects) %>" aria-expanded="true" aria-controls="#<%= Object.keys(subjects) %>"><%= Object.keys(subjects) %></a>
               <%if(inSubject == true && subjectName != Object.keys(subjects)){ %>
                   <ul class="nav collapse" id="<%= Object.keys(subjects) %>">
               <%} else { %>
@@ -35,9 +37,9 @@
               <% } %>
               <% for(var topics in subjects[Object.keys(subjects)[0]]) { %>
                     <% var topicName = subjects[Object.keys(subjects)[0]][parseInt(topics)] %>
-                    <a class="topic" data-toggle="collapse" data-parent="#sidenav-small" href="#<%= topicName %>" aria-expanded="true" aria-controls="#<%= topicName %>">
+                    <a class="topic fixName" data-toggle="collapse" data-parent="#sidenav-small" href="#<%= topicName %>" aria-expanded="true" aria-controls="#<%= topicName %>">
                     <%if(inSubject == true && subTopic != topicName){ %>
-                      <a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>"><%=topicName%></a> </a>
+                      <a class="fixName" href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>"><%=topicName%></a> </a>
                       <ul class="nav collapse" id="<%=topicName%>">
                     <% } else { %>                                             
                         <%=topicName%> </a> 
@@ -55,4 +57,24 @@
 
 
 </div>
+
+<script>
+$(document).ready(function() {
+   var formatNice = function(uglyPathName) {
+        var newWord = uglyPathName.split("_").map(function(word) {
+            var w = word.split("");
+            w[0] = w[0].toUpperCase();
+            w = w.join("");
+            return w;
+        })
+        return newWord.join(" ");
+    }
+    var p = [];
+    document.querySelectorAll(".fixName").forEach(function(d) {
+        if (d.innerHTML.trim().length > 0) {
+            d.innerHTML = formatNice(d.innerHTML);
+        }
+    })
+});
+</script>
                       
