@@ -11,6 +11,11 @@ Server-side files include everything in the **server/** folder, **server.js**, a
 1. Clone the repository from Github.
 2. Install node.js and npm.
 3. Navigate into the project root folder and run `npm install`.
+4. Install nodemon globally: `npm install -g nodemon`
+5. To make sure all the content files are up to date, copy the Leap course content from Sharepoint into the /client/assets/files folder. 
+
+#Run the server from the root folder of the app:
+```nodemon server.js```
 
 #Installing and including JS libraries
 JS libraries (Bootstrap, Angular, etc.) are installed via **NPM**. Include them into your HTML files like this: `<script>'/scripts/path/to/the/jsfile'</script>`, where the path starts from the **node_modules** folder.  
