@@ -46,7 +46,14 @@ function getStuff(subject, topic , type){
     var partial = rootpath + '/client/assets/html/partials/'+  type + '.ejs';
     var compiled = ejs.compile(fs.readFileSync(partial, 'utf8'));
     var html = compiled({data:data, paths:paths, folder:statfolder, subjectName: subject, subTopic: topic});
+    return html;
+}
 
+function getResource(subject, topic, resourceId){
+    var partial = rootpath + '/client/assets/files' + '/' + subject + '/' + topic + '/resources/' + resourceId + '.ejs';
+    var compiled = ejs.compile(fs.readFileSync(partial, 'utf8'));
+    var html = compiled();
+    console.log("Compiled the html resource:", html);
     return html;
 }
 
@@ -61,24 +68,24 @@ module.exports = {
 //Renders dynamic content of the target folder, including introduction, videos, powerpoints, and assignments using a template for each of these partials
     renderContent: function(req, res){
         var message;
-        if (req.params.id == "csharp"){
+        if (req.params.topicId == "csharp"){
             message = "Welcome to C#!";    
         }
         else{
-            message = "Welcome to " + req.params.id + "!";
+            message = "Welcome to " + req.params.topicId + "!";
         }
         
-        var intro = getIntro(req.params.subject, req.params.id);
-        var videos = getStuff(req.params.subject, req.params.id, "videos"); 
-        var presentations = getStuff(req.params.subject, req.params.id, "presentations");
-        var assignments = getStuff(req.params.subject, req.params.id, "assignments");
-        var resources = getStuff(req.params.subject, req.params.id, "resources");
+        var intro = getIntro(req.params.subject, req.params.topicId);
+        var videos = getStuff(req.params.subject, req.params.topicId, "videos"); 
+        var presentations = getStuff(req.params.subject, req.params.topicId, "presentations");
+        var assignments = getStuff(req.params.subject, req.params.topicId, "assignments");
+        var resources = getStuff(req.params.subject, req.params.topicId, "resources");
        // console.log("Rendered templates:", videos, presentations);
    
         res.render(rootpath + '/client/assets/html/content', {
             inSubject : true,
             subjectName : req.params.subject,
-            subTopic : req.params.id,
+            subTopic : req.params.topicId,
             fileSystem : fileSystem,
             welcomeMessage: message,
         content: {
@@ -88,6 +95,27 @@ module.exports = {
             resources: resources,
             assignments: assignments
             },
+        });
+    },
+
+    renderResource: function(req, res){
+        var message;
+        if (req.params.topicId == "csharp"){
+            message = "Welcome to C#!";    
+        }
+        else{
+            message = "Welcome to " + req.params.topicId + "!";
+        }
+        var resource = req.params.resource;
+        res.render(rootpath + '/client/assets/html/partials/maintemplate', {
+            inSubject: true,
+            welcomeMessage: message,
+            subjectName : req.params.subject,
+            subTopic : req.params.topicId,
+            fileSystem: fileSystem,
+            content: {
+                resource: getResource(req.params.subject, req.params.topicId, req.params.resourceId)
+            }
         });
     },
 

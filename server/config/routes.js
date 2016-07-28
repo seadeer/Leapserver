@@ -12,8 +12,12 @@ module.exports = function(app){
         res.render('index', {fileSystem : fileSystem, inSubject: true, subjectName: "", subTopic: ""});
     });
 
-    app.get('/topics/:subject/:id', function(req, res){
+    app.get('/topics/:subject/:topicId', function(req, res){
         // Pass to main render content which generates all templates for rendering.
         main.renderContent(req, res);
-    });   
+    });
+
+    app.get('/topics/:subject/:topicId/resources/:resourceId', function(req, res){
+        main.renderResource(req, res);
+    })   
 };
