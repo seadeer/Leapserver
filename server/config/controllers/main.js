@@ -53,7 +53,6 @@ function getResource(subject, topic, resourceId){
     var partial = rootpath + '/client/assets/files' + '/' + subject + '/' + topic + '/resources/' + resourceId + '.ejs';
     var compiled = ejs.compile(fs.readFileSync(partial, 'utf8'));
     var html = compiled();
-    console.log("Compiled the html resource:", html);
     return html;
 }
 
