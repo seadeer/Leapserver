@@ -72,6 +72,7 @@ module.exports = {
         var videos = getStuff(req.params.subject, req.params.id, "videos"); 
         var presentations = getStuff(req.params.subject, req.params.id, "presentations");
         var assignments = getStuff(req.params.subject, req.params.id, "assignments");
+        var resources = getStuff(req.params.subject, req.params.id, "resources");
        // console.log("Rendered templates:", videos, presentations);
    
         res.render(rootpath + '/client/assets/html/content', {
@@ -84,6 +85,7 @@ module.exports = {
             introduction: intro,
             presentations: presentations,
             videos: videos,
+            resources: resources,
             assignments: assignments
             },
         });
