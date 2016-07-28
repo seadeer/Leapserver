@@ -8,22 +8,6 @@
      This is to allow a user to use the innermost li's to reference page sections
      when they are in a specific topic.
  -->
-<style>
-    .topic {
-        font-weight: bolder;
-        color: #0078D7 !important;
-    }
-    .topic ~ul li a{
-        color: black !important;
-    }
-
-    /* Added the custom font for the left nav text */
-    .side-navigation li a {
-      font-size: 25px; 
-    }
-</style>
-
-
 <div id="navdiv" class="col-md-6">
 
     <ul role="navigation" id="sidenav-small" class="nav side-navigation side-navigation-small theme-default">
@@ -48,11 +32,12 @@
                       <ul class="nav collapse" id="<%=topicName%>">
                     <% } else { %>                                             
                         <%=topicName%> </a> 
-                        <ul class="nav collapse in" id="<%=topicName%>">                                        
+                        <ul class="nav collapse in currentTopic" id="<%=topicName%>">                                        
                     <% } %> 
                           <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#introduction" class="active">Introduction</a></li>
                           <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#presentations">Presentations</a></li>
                           <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#videos">Videos</a></li>
+                          <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#resources">Resources</a></li>
                           <li><a href="/topics/<%=Object.keys(subjects)%>/<%=topicName%>#assignments">Assignments</a></li>
                         </ul><br>
               <% } %>
@@ -62,35 +47,5 @@
 
 
 </div>
+<script src="../../js/helpers.js"></script>
 
-<script>
-$(document).ready(function() {
-
-   var formatNice = function(uglyPathName) {
-        var newWord = uglyPathName.split("_").map(function(word) {
-            var w = word.split("");
-            w[0] = w[0].toUpperCase();
-            w = w.join("");
-            return w;
-        })
-        return newWord.join(" ");
-    }
-    var p = [];
-    // If browser returns nodelist that doesn't have forEach method
-    try {
-    document.querySelectorAll(".fixName").forEach(function(d) {
-        if (d.innerHTML.trim().length > 0) {
-            d.innerHTML = formatNice(d.innerHTML);
-        }
-    })
-    } catch(e){
-    	var nodes = document.querySelectorAll(".fixName");
-        for(var i=0; i< nodes.length; i++){
-            if (nodes[i].innerHTML.trim().length > 0) {
-            nodes[i].innerHTML = formatNice(nodes[i].innerHTML);
-        }
-        }
-    }
-});
-</script>
-                      

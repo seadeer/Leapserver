@@ -1,0 +1,60 @@
+/* PRESENTATION */
+.main a {
+    height: 400px;
+    width: 100%;
+}
+.secondary a {
+    height: 160px;
+    width: 180px;
+}
+
+.list {
+    display: inline-flex;
+    overflow: scroll;
+    width: 100%;
+}
+.secondary {
+    padding: 10px;
+}
+
+/* VIDEOS */
+
+.videoRound{ 
+    list-style-type: none;
+    display: inline-flex;
+    width: 100%;
+    overflow: auto;
+}
+
+/* LEFT NAVIGATION */
+.topic {
+    font-weight: bolder;
+    color: #0078D7 !important;
+}
+.topic ~ul li a{
+    color: black !important;
+}
+
+/* Added the custom font for the left nav text */
+.side-navigation li a {
+    font-size: 25px; 
+}
+
+/* CONTENT */
+#top-link-block.affix-top {
+    position: absolute; /* allows it to "slide" up into view */
+    bottom: -82px; /* negative of the offset - height of link element */
+    left: 10px; /* padding from the left side of the window */
+}
+#top-link-block.affix {
+    position: fixed; /* keeps it on the bottom once in view */
+    bottom: 18px; /* height of link element */
+    left: 10px; /* padding from the left side of the window */
+}
+/* SECTIONS */
+.noLink {
+    text-decoration: none;
+}
+ul {
+    list-style-type: none;
+}

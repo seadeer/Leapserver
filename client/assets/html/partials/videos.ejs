@@ -1,13 +1,5 @@
 <hr>
-<a class="noLink" name="videos"></a>
-<style>
-    .videoRound{ 
-    list-style-type: none;
-    display: inline-flex;
-    width: 100%;
-    overflow: auto;
-    }
-</style>
+<a class="noLink" id="videos"></a>
 <h3>Videos</h3>
 <ul class="">
     <% for(var i=0; i < data.length; i++) {%>
@@ -17,15 +9,5 @@
         </li> 
     <% } %>
 </ul>
-<script>
-        $('document').ready(function(){
-            $('video').each(function(){
-                var id = $(this).attr("id")
-                videojs($(this).attr("id")).ready(function(){this.chapter_thumbnails({
-                    src: id + ".vtt"
-                })
-            })
-        });
-    }); 
-</script>
+
 

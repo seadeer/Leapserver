@@ -1,6 +1,7 @@
 <% include ./partials/head %>
 <!-- Basic right 75% structure has for div's for each section to render -->
 <body>
+<a href="http://bootsnipp.com/fullscreen/x3p9" target="_blank">
    <div class="page-header">
        <div class="container">
                 <div class="navbar-header">
@@ -47,6 +48,11 @@
                                 <%- content.assignments %>
                             </div>
 
+                            <span id="top-link-block" class="hidden">
+                                <h3><a href="#top" class="well well-sm"  onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+                                    <i class="glyphicon glyphicon-chevron-up"></i> Back to Top
+                                </a></h3>
+                            </span>
                         </div>
                       </div>                        
                     </div>
@@ -54,9 +60,8 @@
             </section>
         </div>
     </div>
-   </div>
-   
 
+   </div>
 
 </body>
 </html>
