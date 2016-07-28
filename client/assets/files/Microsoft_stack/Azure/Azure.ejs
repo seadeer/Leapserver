@@ -1,1 +1,13 @@
-<h3>Microsoft Azure</h3>
+<h3>Getting Started on Azure</h3>
+<p>Azure is the Microsoft platform of cloud services. You can use it to host web applications, databases, use data, language processing, machine learning services, and much more.</p>
+<p>In this introduction we will guide you through setting up a Linux virtual machine. You will need to set up an Azure account and have a public and private SSH key.</p>
+<ol>
+    <li>Sign into the Azure portal and click "New" in the left corner.</li>
+    <li>In the "Marketplace" menu on the left, select "Virtual machines", then select "Ubuntu Server 14.04 LTS" or pick your preferred flavor of Linux. Pick "resource manager" in the Deployment model menu (bottom right), and click the Create button.</li> 
+    <li>Enter name for VM, user name, SSH public key, and a resource group name in the next dialog. Click OK.</li>
+    <li>Pick the size of your machine. For testing purposes, the smallest instance, Basic A0, will be sufficient. Click Select.</li>
+    <li>In the next dialog, you can leave all the default settings and click OK. Then confirm your settings by clicking OK again. At this point, the machine will be created.</li>
+    <li>By default, SSH port is open and you should be able to SSH with your private key matching the public key you had set when creating the VM. After your machine is up, you can configure HTTP access.</li>
+    <li>Navigate to your machine's network configuration from Virtual Machines -> your machine's name -> Network Interfaces -> Network Security Group.</li> 
+    <li>Add a new group if there are no groups. Clicking on the group will open settings. Navigate to inbound security rules, and click "Add" at the top of the panel. Put <bold>*</bold> in the source port range and <bold>80</bold> in the destination port range. Now your machine accepts HTTP traffic to its public IP adress (which you can look up in your machine's properties).</li>
+</ol>
