@@ -17,7 +17,7 @@ module.exports = function(app){
         main.renderContent(req, res);
     });
 
-    app.get('/topics/:subject/:topicId/resources/:resourceId', function(req, res){
+    app.get('/topics/:subject/:topicId/:resType/:resourceId', function(req, res){
         main.renderResource(req, res);
     })   
 };

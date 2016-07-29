@@ -31,13 +31,19 @@ function getStuff(subject, topic , type){
                 break;
             case 'presentations':
                 if (extension == ".odp"){
-                data.push(results[i]);
-                paths.push(filepath);
-            }
-            else if (extension == ".pdf"){
-                data.push(results[i]);
-                paths.push(filepath);
-            }
+                    data.push(results[i]);
+                    paths.push(filepath);
+                }
+                else if (extension == ".pdf"){
+                    data.push(results[i]);
+                    paths.push(filepath);
+                }
+                break;
+            case 'resources':
+                if(extension == ".ejs") {
+                    data.push(results[i].substring(0, results[i].lastIndexOf(".")));
+                    paths.push(filepath);
+                }
                 break;
             // If you want in the future to render pptx here is a block to work with
             // else if (extension == ".pptx"){
@@ -56,8 +62,8 @@ function getStuff(subject, topic , type){
     return html;
 }
 
-function getResource(subject, topic, resourceId){
-    var partial = rootpath + '/client/assets/files' + '/' + subject + '/' + topic + '/resources/' + resourceId + '.ejs';
+function getResource(subject, topic, resourceType, resourceId){
+    var partial = rootpath + '/client/assets/files' + '/' + subject + '/' + topic + '/' + resourceType + '/' + resourceId + '.ejs';
     var compiled = ejs.compile(fs.readFileSync(partial, 'utf8'));
     var html = compiled();
     return html;
@@ -120,7 +126,7 @@ module.exports = {
             subTopic : req.params.topicId,
             fileSystem: fileSystem,
             content: {
-                resource: getResource(req.params.subject, req.params.topicId, req.params.resourceId)
+                resource: getResource(req.params.subject, req.params.topicId, req.params.resType, req.params.resourceId)
             }
         });
     },

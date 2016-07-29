@@ -1,3 +1,62 @@
 <h2>Make and deploy a simple Node.js server in Azure</h2>
-<p>To get started, make sure you have nodejs and npm on your local machine. Your Raspberry Pi already comes with Node.js installed). On OS X and Linux you can verify by typing <code class="language-bash">node -v</code> in your terminal. On Windows, OS X, download and run the <a href="https://nodejs.org/en/download/">Node installer</a> from the Node website. On Linux (Debian, Ubuntu), run:</p>
+<h3>Setting up Node and writing the app</h3>
+<p>To get started, make sure you have nodejs and npm on your local machine. Your Raspberry Pi already comes with Node.js installed). On OS X and Linux you can verify by typing <code class="language-bash">node -v</code> in your terminal. On Windows, OS X, download and run the <a href="https://nodejs.org/en/download/">Node installer</a> from the Node website. On Linux (Debian, Ubuntu), run:
+</p>
 <pre><code class="language-bash">sudo apt-get install nodejs npm nodejs-legacy</code></pre>
+<p>Node.js comes with a package manager that allows you to install Javascript modules. You can install a module globally (system-wide), using <code class="language-bash">npm install -g module</code>, or locally into your app folder, using <code class="language-bash">npm install module</code>. Most of the time you will want to install packages locally as dependencies for your app, and only do a global install on the packages related to your development environment, such as <code>nodemon.js</code>. 
+</p>
+<p>Create a folder for your app,    navigate into it, initiatlize your local NPM repository, and install your first Node module. For a simple server application you can use Express.js that will handle http requests:</p>     
+<pre><code class="language-bash">npm init -y
+npm install express --save
+</code></pre>
+<p>This will create a <code>npm-modules</code> folder and a <code>package.json</code> file that catalogs all of the installed npm modules. The <code>--save</code> option saves your installation to the package file. Now you are ready to create the server app. Make a new .js file with the name you like (<code>server.js</code> or <code>app.js</code> are some good conventions for server app names). Declare your Express module dependency in the first line, then create a new instance of Express: 
+</p>
+<pre><code class="language-javascript">var express = require('express');
+var app = express();
+</code></pre>
+<p>Now make the Express server listen on some port (e.g. 8000) and display a message in the terminal when the server is up:
+</p>
+<pre><code class="language-javascript">app.listen(8000, function(){
+    console.log("Listening on port 8000, press Ctrl-C to stop.")
+});
+</code></pre>
+<p>Finally, make the Express server send a response to a GET request sent to the root URL:
+</p>
+<pre><code class="language-javascript">app.get('/', function(request, response){
+        response.send("Hello world!")
+});
+</code></pre>
+<p>Your basic server app is ready to deploy. Here is the entire code:</p>
+<pre><code class="language-javascript">var express = require('express');
+var app = express();
+app.listen(8000, function(){
+    console.log("Listening on port 8000, press Ctrl-C to stop.")
+});
+app.get('/', function(request, response){
+    response.send("Hello world!")
+});
+</code></pre>
+<h3>Deployment</h3>
+<p>There are many different ways to deploy apps. This particular recipe involves another server, <code>Nginx</code>, serving as an intermediate between your app and the web at large.</p>
+<ol>
+    <li>Upload the folder with your app on your Azure instance. You can do it in terminal using the <code>scp</code> command (copy via ssh - more about that <a href="#">here</a>) or using a GUI client like FileZilla. On your instance, you can put the app folder in a location of your choice. Typically, the <code>/var/www/</code> folder is used.
+    </li>
+    <li>SSH into your instance. Check if Nginx is already installed (<code class="language-bash">which nginx</code>). Install nodejs and npm using the instructions above. Navigate to your app folder and run <code class="language-bash">npm install</code>. You may need to use <code>sudo</code> for this.</li>
+    <li>You may need to install a terminal text editor like <code>nano</code> or <code>emacs</code> for the next step: 
+        <pre><code class="language-bash">sudo apt-get install nano</code></pre>Navigate to <code>/etc/nginx/sites-available</code>. Delete the <code>default</code> file that's already in there, and create a new file using the editor and giving it some name (you will use <code>sudo</code> for this as <code>/etc/</code> is a system folder):
+        <pre><code class="language-bash">sudo nano myhelloworld-conf</code></pre>
+    </li>
+    <li>Write an nginx configuration file. Your app is running on the port 8000, which is only visible inside your machine. The configuration file will give Nginx instructions to direct all traffic from port 80, which is open to the Internet on your instance, to port 8000. Here is a basic Nginx config example that does exactly that:<pre><code class="language-nginx">server {
+    listen 80;
+    server_name helloworld;
+
+    location / {
+        proxy_pass http://localhost:8000/;
+    }
+}</code></pre></li>
+    <li>Now change to another folder, <code>/etc/nginx/sites-enabled</code>, and make a symbolic link to your config file:<pre><code class="language-bash">sudo ln -s ../etc/nginx/sites-available/myhelloworld-conf</code></pre>
+    </li>
+    <li>Install pm2 on your instance globally via npm:<pre><code class="language-bash">npm install -g pm2</code></pre>
+    </li>
+    <li>Change into your app folder and start your app with pm2:<pre><code class="language-bash">pm2 start app.js</code></pre>You can now close the SSH session by typing <code class="language-bash">exit</code> in the terminal, and put in the IP address of your instance in the browser. If everything is configured correctly, a message "Hello world!" will show up.</li>
+</ol>
