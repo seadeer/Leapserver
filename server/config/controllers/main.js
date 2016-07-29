@@ -49,8 +49,8 @@ function getStuff(subject, topic , type){
     return html;
 }
 
-function getResource(subject, topic, resourceId){
-    var partial = rootpath + '/client/assets/files' + '/' + subject + '/' + topic + '/resources/' + resourceId + '.ejs';
+function getResource(subject, topic, resourceType, resourceId){
+    var partial = rootpath + '/client/assets/files' + '/' + subject + '/' + topic + '/' + resourceType + '/' + resourceId + '.ejs';
     var compiled = ejs.compile(fs.readFileSync(partial, 'utf8'));
     var html = compiled();
     return html;
@@ -113,7 +113,7 @@ module.exports = {
             subTopic : req.params.topicId,
             fileSystem: fileSystem,
             content: {
-                resource: getResource(req.params.subject, req.params.topicId, req.params.resourceId)
+                resource: getResource(req.params.subject, req.params.topicId, req.params.resType, req.params.resourceId)
             }
         });
     },

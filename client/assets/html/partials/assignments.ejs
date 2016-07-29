@@ -1,4 +1,9 @@
 <hr>
 <a class="noLink" id="assignments"></a>
 
-<h3>Assignments<h3>
+<h3>Assignments</h3>
+<ul>
+    <% for(var i=0; i < data.length; i++) {%>
+    <li><a class="fixName" href='/topics/<%=subjectName%>/<%=subTopic%>/assignments/<%=data[i]%>'><%=data[i]%></a></li>
+        <% } %>
+</ul>
