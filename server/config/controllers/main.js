@@ -24,13 +24,19 @@ function getStuff(subject, topic , type){
                 break;
             case 'presentations':
                 if (extension == ".odp"){
-                data.push(results[i]);
-                paths.push(filepath);
-            }
-            else if (extension == ".pdf"){
-                data.push(results[i]);
-                paths.push(filepath);
-            }
+                    data.push(results[i]);
+                    paths.push(filepath);
+                }
+                else if (extension == ".pdf"){
+                    data.push(results[i]);
+                    paths.push(filepath);
+                }
+                break;
+            case 'resources':
+                if(extension == ".ejs") {
+                    data.push(results[i].substring(0, results[i].lastIndexOf(".")));
+                    paths.push(filepath);
+                }
                 break;
             // If you want in the future to render pptx here is a block to work with
             // else if (extension == ".pptx"){
