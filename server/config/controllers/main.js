@@ -9,9 +9,12 @@ function getStuff(subject, topic , type){
     var folder = path.join(rootpath, '/client/assets/files', subject, topic, '/', type, '/');
     var results = fs.readdirSync(folder);
     var statfolder = path.join('/', 'files', subject, topic, '/', type, '/')
-    console.log("Statfolder:", statfolder);
+    // console.log("Statfolder:", statfolder);
     var data = [];
     var paths = [];
+    var videoNames = [];
+    var videoNamesPath = path.join(rootpath + '/client/assets/files/' + subject + '/' + topic + '/videos/videoNames.js');
+
     for (var i in results){
         var extension = path.extname(results[i]);
         var filepath = statfolder + results[i];
@@ -20,6 +23,10 @@ function getStuff(subject, topic , type){
                 if (extension == ".mp4" || extension == ".wmv"){
                 data.push(results[i].substring(0, results[i].lastIndexOf(".")));
                 paths.push(filepath);
+                }
+                if(extension == ".js") {
+                    if(results[i].name="videoNames.js")
+                        videoNames.push( fs.readFileSync(videoNamesPath,'utf8'));                       
                 }
                 break;
             case 'presentations':
@@ -45,7 +52,7 @@ function getStuff(subject, topic , type){
     }
     var partial = rootpath + '/client/assets/html/partials/'+  type + '.ejs';
     var compiled = ejs.compile(fs.readFileSync(partial, 'utf8'));
-    var html = compiled({data:data, paths:paths, folder:statfolder, subjectName: subject, subTopic: topic});
+    var html = compiled({data:data, paths:paths, folder:statfolder, subjectName: subject, subTopic: topic, videoNames: videoNames});
     return html;
 }
 

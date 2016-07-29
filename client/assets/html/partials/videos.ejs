@@ -3,7 +3,15 @@
 <h3>Videos</h3>
 <ul class="">
     <% for(var i=0; i < data.length; i++) {%>
+    <%var name;%>
+    <%try { %>
+    <%   name = JSON.parse(videoNames)[data[i]]; %>
+    <% console.log(JSON.parse(videoNames)[data[i]]); %>
+    <%} catch(e) { %> 
+    <%   name = ""; %>
+    <%}%>
         <li>
+            <%=name%>
             <video id='<%=folder%><%=data[i]%>' class='video-js vjs-default-skin' controls preload='auto' > <source src='<%=paths[i]%>' type="video/mp4" />
             </video><br/>
         </li> 
