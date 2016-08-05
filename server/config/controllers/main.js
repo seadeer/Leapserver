@@ -71,8 +71,11 @@ function getResource(subject, topic, resourceType, resourceId){
 
 //renders the introduction partial
 function getIntro(subject, topic){
-    var template = rootpath + '/client/assets/files/' + subject + '/' + topic + '/' + topic;
-    return ejs.render(template);
+    var template = rootpath + '/client/assets/files/' + subject + '/' + topic + '/' + topic + '.ejs';
+    //return ejs.render(template);
+    var compiled = ejs.compile(fs.readFileSync(template, 'utf8'));
+    var html = compiled();
+    return html;
 }
 
 
