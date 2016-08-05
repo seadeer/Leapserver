@@ -8,6 +8,18 @@ server {
         proxy_pass http://localhost:9000/scripts;
     }
 
+    location /files {
+        proxy_pass http://localhost:9000/files;
+    }
+
+    location /viewer {
+        proxy_pass http://localhost:9000/viewer;
+    }
+
+    location /topics {
+        proxy_pass http://localhost:9000/topics;
+    }
+
     location /leapserver {
         rewrite ^/leapserver(.*) /$1 break;
         proxy_pass http://localhost:9000/;
